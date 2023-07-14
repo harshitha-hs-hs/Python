@@ -1,0 +1,12 @@
+import cv2
+import numpy as np
+image=cv2.imread("image")
+cv2.imshow("original",image)
+mask=np.zeroes(image.shape[:2],dtype="uint8")
+cv2.rectangle(mask,(0,90),(290,450),255,-1)
+cv2.imshow("rectangular mask",mask)
+masked=cv2.Bitwise_and(image,image,mask=mask)
+cv2.imshow("mask applied",masked)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+cv2.circle(mask,(145,145),100,255,-1)
