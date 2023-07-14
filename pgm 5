@@ -1,0 +1,119 @@
+import cv2
+img = cv2.imread(r'C:\Users\Lab1a \cat.jpeg', 1)
+scale = 60
+width = int(img.shape[1] * scale / 100) height = int(img.shape[0] * scale / 100) dim = (width, height)
+# resize image
+resized = cv2.resize(img, dim, interpolation=cv2.INTER_AREA) print('Resized Dimensions : ', resized.shape) cv2.imshow("Resized image", resized)
+cv2.waitKey(0) cv2.destroyAllWindows()
+
+Output:
+ Resized Dimensions : (199, 300, 3)	
+
+The resizing of image means changing the dimension of the image, its width or height as well as both. Also the aspect ratio of the original image could be retained by resizing an image. OpenCV provides cv2.resize() function to resize the image. The syntax is given as: cv2.resize(src, dsize[, dst[, fx[,fy[,interpolation]]])
+Parameters:
+o	src - source/input image (required).
+o	dsize - desired size for the output image(required)
+ 
+o	fx - Scale factor along the horizontal axis.(optional)
+o	fy - Scale factor along the vertical axis.
+o	Interpolation(optional) - This flag uses following methods:
+o	INTER_NEAREST - A nearest-interpolation INTER_AREA - resampling using pixel area relation. When we attempt to do image zoom, it is similar to the INTER_NEAREST method.
+o	INTER_CUBIC - A bicubic interpolation over 4×4 pixel neighbourhood.
+o	INTER_LANCOZS4 - Lanczos interpolation over 8×8 pixel neighbourhood.
+
+Example of resizing the images
+There are several ways to resize the image. Below are some examples to  perform resize operation:
+1.	Retain Aspect Ratio ( height to width ratio of the image is retained)
+o	Downscale(Decrement in the size of the image)
+o	Upscale(Increment in the size of image)
+2.	Do not preserve Aspect Ratio
+o	Resize only the width
+o	Resize only the height
+3.	Resize the specified width and height
+
+Retain the aspect ratio
+o	Downscale with resize()
+
+import cv2
+img = cv2.imread(r'C:\Users\Lab1a \cat.jpeg', 1) print('Original Dimensions : ', img.shape)
+scale = 60 # percent of original size width = int(img.shape[1] * scale / 100) height = int(img.shape[0] * scale / 100) dim = (width, height)
+# resize image
+resized = cv2.resize(img, dim, interpolation=cv2.INTER_AREA) print('Resized Dimensions : ', resized.shape) cv2.imshow("Resized image", resized)
+cv2.waitKey(0) cv2.destroyAllWindows()
+1.
+Output: : (33 , 500, 3)
+ 
+z Original Dimensions : (332, 500(199, 300, 3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2.	O	riginal
+Dimensions : (332, 500, 3)
+3.	Resized Dimensions : (199, 300, 3)
+In the above example, the scale_per variable holds the percentage of the image which needs to be scaled. The value<100 is used to   downscale   the   provided   image.   We   will use this scale_per value along with the original image's dimension to calculate the width and height of the output image.
+Upscale with resize() import cv2
+img = cv2.imread(r'C:\Users\Lab1a \cat.jpeg', 1)
+print('Original Dimensions : ', img.shape) scale = 150 # percent of original size width = int(img.shape[1] * scale / 100) height = int(img.shape[0] * scale / 100) dim = (width, height)
+# resize image
+resized = cv2.resize(img, dim, interpolation=cv2.INTER_AREA) print('Resized Dimensions : ', resized.shape) cv2.imshow("Resized image", resized)
+cv2.waitKey(0) cv2.destroyAllWindows()
+ 
+
+ 
+
+
+Not retaining the aspect ratio
+o	Resize only the width
+
+In the below example, we have provided a specific value in pixel for width and the height will remain unaffected.
+import cv2 img = cv2.imread(r'C:\Users\Lab1a \cat.jpeg', cv2.IMREAD_UNCHANGED) print('Original Dimensions : ', img.shape)
+width = img.shape[1] # keep original width height = 440
+dim = (width, height) # resize image
+resized = cv2.resize(img, dim, interpolation=cv2.INTER_AREA) print('Resized Dimensions : ', resized.shape) cv2.imshow("Resized image", resized)
+cv2.waitKey(0) cv2.destroyAllWindows()
+
+ 
+
+ 
+Resize the height
+
+In the below example, the scale_per value holds the percentage by which height has to be scaled or we can provide the specific value in pixels.
+import cv2
+img = cv2.imread(r'C:\Users\Lab1a \cat.jpeg', 1) print('Original Dimensions : ', img.shape)
+width = img.shape[1] # keep original width height = 200
+dim = (width, height) # resize image
+resized = cv2.resize(img, dim, interpolation=cv2.INTER_AREA) print('Resized Dimensions : ', resized.shape) cv2.imshow("Resized image", resized)
+cv2.waitKey(0) cv2.destroyAllWindows()
+
+
+ 
+
+ 
+
+
+
+Resize the specific width and height
+o	We can specify both width and height.
+
+import cv2
+img = cv2.imread(r'C:\Users\Lab1a \cat.jpeg', 1) print('Original Dimensions : ', img.shape)
+width = 350
+height = 450
+dim = (width, height)
+
+# resize image
+resized = cv2.resize(img, dim, interpolation=cv2.INTER_AREA) print('Resized Dimensions : ', resized.shape) cv2.imshow("Resized image", resized)
+cv2.waitKey(0) cv2.destroyAllWindows()
